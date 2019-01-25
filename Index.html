@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Interactive song</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <style> 
+        /* .audios {display: none;}              */
+        #choice {display: none;}
+    </style>
+</head>
+
+<body>
+
+    <div class="audios">
+        <audio id="test-1" controls preload="auto">
+            <source src="smoothSounds/test-1.ogg" type="audio/ogg">
+            <source src="smoothSounds/test-1.mp3" type="audio/mpeg">
+            Your browser does not support HTML5 video.
+        </audio>
+            
+        <audio id="test-2A" controls preload="auto">
+            <source src="smoothSounds/test-2A.ogg" type="audio/ogg">
+            <source src="smoothSounds/test-2A.mp3" type="audio/mpeg">
+            Your browser does not support HTML5 video.
+        </audio>
+
+        <audio id="test-2B" controls preload="auto">
+            <source src="smoothSounds/test-2B.ogg" type="audio/ogg">
+            <source src="smoothSounds/test-2B.mp3" type="audio/mpeg">
+            Your browser does not support HTML5 video.
+        </audio>
+
+        <!-- preload="auto" load files when page loads -->
+    </div>
+
+
+    
+<center>
+    <h1>Aby przetestować naciśnij "Start play" poniżej - po 28 sekundach pojawi się wybór</h1>
+    <h3>Nie uruchamiaj odtwarzaczy powyżej, docelowo będą ukryte - ukazują mechanike</h3>
+        <button type="button" onclick="playAudio()">Start play</button>
+
+        <div id="choice" class="">
+                <button type="button" onclick="chooseA()">Motyw A</button>
+                <button type="button" onclick="chooseB()">Motyw B</button>
+        </div>
+</center>
+    
+
+
+    <script>
+        //setInterval(): executes a function, over and over again, at specified time intervals
+        //setTimeout() : executes a function, once, after waiting a specified number of milliseconds
+        // $(".audios").trigger('load');
+
+        var audio1 = document.getElementById("test-1");        
+        var audio2A = document.getElementById("test-2A");
+        var audio2B = document.getElementById("test-2B");
+
+        var AorB = "A";
+        function chooseA(){
+            AorB = "A";
+            document.getElementById("choice").style.display = 'none';
+        }
+        function chooseB(){
+            AorB = "B";
+            document.getElementById("choice").style.display = 'none';
+        }
+
+
+        
+        function playAudio(){
+            audio1.play();
+
+            setTimeout(function(){
+                playSecondAudio()
+                },38000);
+
+            setTimeout(function(){
+                document.getElementById("choice").style.display = 'block';
+                },28000);
+        }
+
+        function playSecondAudio() { 
+
+            document.getElementById("choice").style.display = 'none';
+
+            if(AorB === "A"){
+                audio2A.play();                
+            }
+            else{
+                audio2B.play();
+            } 
+        }
+
+    </script>
+</body>
+</html>
